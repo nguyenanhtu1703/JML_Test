@@ -2,10 +2,7 @@ package com.anhtu.dao;
 
 import com.anhtu.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -20,7 +17,6 @@ public class UserDAOImpl implements UserDAO {
         System.out.println("125");
         this.entityManager = entityManager;
     }
-
 
     @Override
     public User getActiveUser(String login) {

@@ -4,12 +4,8 @@ import com.anhtu.entity.User;
 import com.anhtu.error.UserExistedException;
 import com.anhtu.error.UserNotFoundException;
 import com.anhtu.repository.UserRepository;
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

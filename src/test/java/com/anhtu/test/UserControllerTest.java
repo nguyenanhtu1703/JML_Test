@@ -1,6 +1,5 @@
 package com.anhtu.test;
 
-import com.anhtu.entity.Room;
 import com.anhtu.entity.User;
 import com.anhtu.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;

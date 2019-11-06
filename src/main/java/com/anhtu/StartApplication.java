@@ -3,10 +3,7 @@ package com.anhtu;
 import com.anhtu.dao.UserDAO;
 import com.anhtu.dao.UserDAOImpl;
 import com.anhtu.entity.PROJECTOR;
-import com.anhtu.entity.Room;
 import com.anhtu.entity.User;
-import com.anhtu.repository.BookingRepository;
-import com.anhtu.repository.RoomRepository;
 import com.anhtu.repository.UserRepository;
 import com.anhtu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +25,6 @@ public class StartApplication extends SpringBootServletInitializer {
     private UserRepository userRepository;
 
     @Autowired
-    private RoomRepository roomRepositorys;
-
-    @Autowired
-    private BookingRepository bookingRepository;
-
-    @Autowired
     ApplicationContext context;
 
     public static void main(String[] args) {
@@ -44,22 +35,15 @@ public class StartApplication extends SpringBootServletInitializer {
     CommandLineRunner runner() {
         return (args) -> {
             log.info("StartApplication...");
-
             UserService userService = context.getBean(UserService.class);
-
             UserDAO userDAO = context.getBean(UserDAO.class);
-
             UserDAO userDAOImpl = context.getBean(UserDAOImpl.class);
-
             if (userDAO == userDAOImpl)
                 System.out.println("userDAO == userDAOImpl");
 
             userRepository.save(new User("jsmith", "John2", "Smith", "qwerty"));
             userRepository.save(new User("jdoe", "Jane", "Doe", "mySecret"));
 
-            roomRepositorys.save(new Room("Large Room", "1st floor", new Long(10), PROJECTOR.yes, "22-22-22"));
-            roomRepositorys.save(new Room("Medium Room", "1st floor", new Long(10),PROJECTOR.yes));
-            roomRepositorys.save(new Room("Small Room", "2st floor", new Long(10), PROJECTOR.no));
         };
     };
 
@@ -68,3 +52,4 @@ public class StartApplication extends SpringBootServletInitializer {
         return builder.sources(StartApplication.class);
     }
 }
+
