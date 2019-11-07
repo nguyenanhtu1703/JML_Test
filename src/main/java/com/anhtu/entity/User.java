@@ -69,4 +69,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof User == false)
+            return false;
+
+        User user = (User) obj;
+        return (user.getLogin().equals(login) && user.getPassword().equals(getPassword()));
+    }
 }

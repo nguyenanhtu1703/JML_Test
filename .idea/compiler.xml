@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Tu_Anh_Nguyen_BePolannd_ProjectRecuitment" />
+        <module name="Tu_Anh_Nguyen_ProjectRecuitment" />
       </profile>
     </annotationProcessing>
   </component>

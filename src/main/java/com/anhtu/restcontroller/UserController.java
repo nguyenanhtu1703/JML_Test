@@ -21,7 +21,7 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/users/${secret.key}")
-    User newBook(@Valid @RequestBody User newUser) {
+    private User newBook(@Valid @RequestBody User newUser) {
         if (userRepository.findByLogin(newUser.getLogin()) != null) {
             throw new UserExistedException(newUser.getLogin());
         }
@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @PatchMapping("/users/${secret.key}/{login}")
-    User patch(@RequestBody User user, @PathVariable String login) {
+    private User patch(@RequestBody User user, @PathVariable String login) {
         userRepository.findById(login).map(x -> {
             if (user.getName() != null)
                 x.setName(user.getName());
@@ -50,10 +50,10 @@ public class UserController {
         return user;
     }
 
-    @DeleteMapping("/user/${secret.key}/{login}")
-    void deleteUser(@PathVariable String login) {
+    @DeleteMapping("/users/${secret.key}/{login}")
+    private void deleteUser(@PathVariable String login) {
         if (userRepository.findById(login) != null)
-            userRepository.deleteById(login);
+            userRepository.deleteByLogin(login);
         else
             throw new UserNotFoundException(login);
     }
@@ -61,15 +61,5 @@ public class UserController {
     @GetMapping("/users")
     List<User> findAll() {
         return userRepository.findAll();
-    }
-
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(UserExistedException.class)
-    public Map<String, String> handleValidationExceptions(UserExistedException ex) {
-        Map<String, String> errors = new HashMap<>();
-        errors.put("message", ex.getMessage());
-
-        System.out.println("User Existed!");
-        return errors;
     }
 }
